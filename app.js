@@ -5,10 +5,21 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongoose = require('mongoose');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+// connect to mongo db
+mongoose.connect('mongodb://127.0.0.1/test', function(err) {
+	if(err) {
+		console.log('connection error', err);
+	} else {
+		console.log('connection successful');
+	}
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
